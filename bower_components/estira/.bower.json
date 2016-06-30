@@ -1,0 +1,24 @@
+{
+  "name": "estira",
+  "version": "0.3.3",
+  "description": "Expose Livescript's class system to JavaScript",
+  "main": "index.js",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "package.json",
+    "Makefile",
+    "test.js"
+  ],
+  "homepage": "https://github.com/quarterto/Estira",
+  "_release": "0.3.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.3",
+    "commit": "134e74c63792dd3e7ca76f13b942f8e60d34263a"
+  },
+  "_source": "https://github.com/quarterto/Estira.git",
+  "_target": "^0.3.3",
+  "_originalSource": "estira",
+  "_direct": true
+}
