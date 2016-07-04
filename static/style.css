@@ -1,0 +1,17 @@
+.container1{
+	width: 50%;
+	float: left;
+}
+
+.container2{
+	width: 50%;
+	float: right;
+}
+
+.changing1{
+    padding-left: 10%;
+}
+
+.changing2{
+	padding-left: 10%;
+}
