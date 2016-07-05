@@ -1,17 +1,15 @@
-.container1{
-	width: 50%;
+.container1, .container2, .container3, .container4{
+	width: 20%;
 	float: left;
+	align-items: center;
 }
 
-.container2{
-	width: 50%;
-	float: right;
+.changing1, .changing2, .changing3, .changing4{
+	width: 5%;
+    padding-left: 20%;
 }
 
-.changing1{
-    padding-left: 10%;
-}
-
-.changing2{
-	padding-left: 10%;
+.container{
+	width: 100%;
+	align-items: center;
 }
