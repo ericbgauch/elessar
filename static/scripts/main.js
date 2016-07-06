@@ -4,25 +4,14 @@ require.config({
     "jquery": "scripts/jquery",
     "elessar": "scripts/elessar",
     "es5-shim": "scripts/es5-shim",
-    "estira": "scripts/index"
+    "estira": "scripts/index",
+    "ranges": "scripts/ranges"
   }
 });
-require(['jquery', 'elessar'],
-function($, RangeBar) {
-  $('[role=main1]').prepend(r1 = RangeBar({
-    min: 0.1,
-    max: 1,
-    valueFormat: function(a) {
-      return (a.toFixed(2));
-    },
-    valueParse: function(a) {
-      return a;
-    },
-    vertical: true,
-    snap: 0.18,
-    minSize: 0.18,
-    allowDelete: true
-  }).on('changing', function(ev, ranges, changed) {
+
+require(['ranges', 'jquery', 'elessar'],function(createBar, $, RangeBar){
+  bar1 = createBar("r1", 0.1, 0.5, 0.1);
+  $('[role=main1]').prepend(bar1).on('changing', function(ev, ranges, changed) {
       $('pre.changing1').html("\nRange: "+ranges);
   }).on('change', function(ev, ranges, changed) {
       var teste = "\n"
@@ -32,23 +21,23 @@ function($, RangeBar) {
           }
       }
       $('pre.changing1').html("\nRange: "+teste);
+      console.log(teste);
 
-      var minHc, maxHc, rangeCountHc, valorHc, i, j;
-      var hc = [];
+      var minPh, maxPh, rangeCountPh, valorPh, i, j;
+      var ph = [];
       for(i=0;i<ranges.length;i++){
-          minHc = ranges[i][0];
-          maxHc = ranges[i][1];
-          valorHc = parseFloat(minHc);
-          hc.push(JSON.stringify(minHc));
-          rangeCountHc = (maxHc - minHc)/0.18;
-          rangeCountHc = rangeCountHc.toFixed(2);
-          for(j=0;j<rangeCountHc;j++){
-            valorHc += 0.18;
-            hc.push(JSON.stringify(valorHc.toFixed(2)));
+          minPh = ranges[i][0];
+          maxPh = ranges[i][1];
+          valorPh = parseFloat(minPh);
+          ph.push(JSON.stringify(minPh));
+          rangeCountPh = (maxPh - minPh)/6.18;
+          rangeCountPh = rangeCountPh.toFixed(2);
+          for(j=0;j<rangeCountPh;j++){
+            valorPh += 6.18;
+            ph.push(JSON.stringify(valorPh.toFixed(2)));
           };
       };
-    //console.log(hc);
-  }).$el);
+  }).$el;
 
 /////////////////////////PH//////////////////////////////////////
 
