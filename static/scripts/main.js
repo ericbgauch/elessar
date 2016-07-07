@@ -34,20 +34,19 @@ function($, RangeBar) {
       $('pre.changing1').html("\nRange: "+teste);
 
       var minHc, maxHc, rangeCountHc, valorHc, i, j;
-      var hc = [];
+      window.hc = [];
       for(i=0;i<ranges.length;i++){
           minHc = ranges[i][0];
           maxHc = ranges[i][1];
           valorHc = parseFloat(minHc);
-          hc.push(JSON.stringify(minHc));
+          window.hc.push(JSON.stringify(minHc));
           rangeCountHc = (maxHc - minHc)/0.18;
           rangeCountHc = rangeCountHc.toFixed(2);
           for(j=0;j<rangeCountHc;j++){
             valorHc += 0.18;
-            hc.push(JSON.stringify(valorHc.toFixed(2)));
+            window.hc.push(JSON.stringify(valorHc.toFixed(2)));
           };
       };
-    //console.log(hc);
   }).$el);
 
 /////////////////////////PH//////////////////////////////////////
@@ -75,23 +74,23 @@ function($, RangeBar) {
           }
       }
       $('pre.changing2').html("\nRange: "+teste);
-      console.log(teste);
+      //console.log(teste);
 
       var minPh, maxPh, rangeCountPh, valorPh, i, j;
-      var ph = [];
+      window.ph = [];
       for(i=0;i<ranges.length;i++){
           minPh = ranges[i][0];
           maxPh = ranges[i][1];
           valorPh = parseFloat(minPh);
-          ph.push(JSON.stringify(minPh));
+          window.ph.push(JSON.stringify(minPh));
           rangeCountPh = (maxPh - minPh)/6.18;
           rangeCountPh = rangeCountPh.toFixed(2);
           for(j=0;j<rangeCountPh;j++){
             valorPh += 6.18;
-            ph.push(JSON.stringify(valorPh.toFixed(2)));
+            window.ph.push(JSON.stringify(valorPh.toFixed(2)));
           };
       };
-  }).$el)
+  }).$el);
 
 ////////////////////////////EP//////////////////////////////////
 
@@ -118,23 +117,23 @@ function($, RangeBar) {
           }
       }
       $('pre.changing3').html("\nRange: "+teste);
-      console.log(teste);
+      //console.log(teste);
 
       var minEp, maxEp, rangeCountEp, valorEp, i, j;
-      var ep = [];
+      window.ep = [];
       for(i=0;i<ranges.length;i++){
           minEp = ranges[i][0];
           maxEp = ranges[i][1];
           valorEp = parseFloat(minEp);
-          ep.push(JSON.stringify(minEp));
+          window.ep.push(JSON.stringify(minEp));
           rangeCountEp = (maxEp - minEp)/0.08;
           rangeCountEp = rangeCountEp.toFixed(2);
           for(j=0;j<rangeCountEp;j++){
             valorEp += 0.08;
-            ep.push(JSON.stringify(valorEp.toFixed(2)));
+            window.ep.push(JSON.stringify(valorEp.toFixed(2)));
           };
       };
-  }).$el)
+  }).$el);
 
 ////////////////////////////LD//////////////////////////////////
 
@@ -161,21 +160,54 @@ function($, RangeBar) {
           }
       }
       $('pre.changing4').html("\nRange: "+teste);
-      console.log(teste);
+      //console.log(teste);
 
       var minLd, maxLd, rangeCountLd, valorLd, i, j;
-      var ld = [];
+      window.ld = [];
       for(i=0;i<ranges.length;i++){
           minLd = ranges[i][0];
           maxLd = ranges[i][1];
           valorLd = parseFloat(minLd);
-          ld.push(JSON.stringify(minLd));
+          window.ld.push(JSON.stringify(minLd));
           rangeCountLd = (maxLd - minLd)/0.08;
           rangeCountLd = rangeCountLd.toFixed(2);
           for(j=0;j<rangeCountLd;j++){
             valorLd += 0.08;
-            ld.push(JSON.stringify(valorLd.toFixed(2)));
+            window.ld.push(JSON.stringify(valorLd.toFixed(2)));
           };
       };
   }).$el)
-})
+});
+
+function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+};
+
+require(['jquery'], function($){
+  $( "#botao" ).click(function() {
+    if((typeof window.hc !== 'undefined' && !isEmpty(window.hc)) && (typeof window.ph !== 'undefined' && !isEmpty(window.ph)) && (typeof window.ep !== 'undefined' && !isEmpty(window.ep)) && (typeof window.ld !== 'undefined' && !isEmpty(window.ld))){
+
+      window.jobs = [];
+      for(var i=0;i<window.hc.length;i++){
+        for(var j=0;j<window.ph.length;j++){
+          for(var k=0;k<window.ep.length;k++){
+            for(var l=0;l<window.ld.length;l++){
+              jobs.push(window.hc[i] + window.ph[j] + window.ep[k] + window.ld[l]);
+            }
+          }
+        }
+      }
+      for(var i=0; i<jobs.length; i++){
+        $("#jobsTable").append('<tr><td>'+jobs[i]+'</td></tr>');
+      }
+    }
+    else{
+      alert("Select the ranges");
+    };
+  });
+});
