@@ -15,6 +15,7 @@
   right: 0;
 }
 .elessar-vertical .elessar-handle {
+  position: absolute;
   height: 5px;
   width: 100%;
   left: 0;
@@ -79,17 +80,21 @@
   cursor: pointer !important;
 }
 .elessar-rangebar {
-  position: fixed;
+  position: relative;
   height: 50%;
   line-height: 30px;
-  width: 3%;
+  width: 30%;
   background: #ccc;
+  border-radius: 5px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
 }
 .elessar-delete-confirm {
   background: red;

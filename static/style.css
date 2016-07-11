@@ -1,7 +1,37 @@
-.container1, .container2, .container3, .container4{
-	width: 20%;
-	float: left;
-	align-items: center;
+.container1{
+	position: absolute;
+	width: 12.5%;
+	height: 65%;
+	top: 6%;
+	bottom: 0;
+	left: 5%;
+}
+
+.container2{
+	position: absolute;
+	width: 12.5%;
+	height: 65%;
+	top: 6%;
+	bottom: 0;
+	left: 17.5%;
+}
+
+.container3{
+	position: absolute;
+	width: 12.5%;
+	height: 65%;
+	top: 6%;
+	bottom: 0;
+	left: 30%;
+}
+
+.container4{
+	position: absolute;
+	width: 12.5%;
+	height: 65%;
+	top: 6%;
+	bottom: 0;
+	left: 42.5%;
 }
 
 .changing1, .changing2, .changing3, .changing4{
@@ -10,6 +40,18 @@
 }
 
 .container{
-	width: 100%;
+	width: 50%;
+	border-style: solid;
+	height: 275px;
 	align-items: center;
+}
+
+.elessar-rangebar .elessar-vertical{
+	margin-top: 2.5%;
+	margin-left: 4%;
+	position: absolute;
+}
+
+body{
+	height: 100%;
 }
