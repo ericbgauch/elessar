@@ -23,15 +23,16 @@ function($, RangeBar) {
     minSize: 0.18,
     allowDelete: true
   }).on('changing', function(ev, ranges, changed) {
-      $('pre.changing1').html("\nRange: "+ranges);
+      $('pre.changing1').html(ranges);
   }).on('change', function(ev, ranges, changed) {
-      var teste = "\n"
+      var teste = "";
       for(var i=0;i<ranges.length;i++){
           for(var j=0;j<2;j++){
-              teste += ranges[i][j]+"\n";
+              teste += " - " + ranges[i][j];
           }
+          teste += "\n";
       }
-      $('pre.changing1').html("\nRange: "+teste);
+      $('pre.changing1').html(teste);
 
       var minHc, maxHc, rangeCountHc, valorHc, i, j;
       window.hc = [];
@@ -65,15 +66,16 @@ function($, RangeBar) {
     minSize: 6.18,
     allowDelete: true
   }).on('changing', function(ev, ranges, changed) {
-      $('pre.changing2').html("\nRange: "+ranges);
+      $('pre.changing2').html(ranges);
   }).on('change', function(ev, ranges, changed) {
-      var teste = "\n"
+      var teste = "";
       for(var i=0;i<ranges.length;i++){
           for(var j=0;j<2;j++){
-              teste += ranges[i][j]+"\n";
+              teste += " - " + ranges[i][j];
           }
+          teste += "\n";
       }
-      $('pre.changing2').html("\nRange: "+teste);
+      $('pre.changing2').html(teste);
       //console.log(teste);
 
       var minPh, maxPh, rangeCountPh, valorPh, i, j;
@@ -108,15 +110,16 @@ function($, RangeBar) {
     minSize: 0.08,
     allowDelete: true
   }).on('changing', function(ev, ranges, changed) {
-      $('pre.changing3').html("\nRange: "+ranges);
+      $('pre.changing3').html(ranges);
   }).on('change', function(ev, ranges, changed) {
-      var teste = "\n"
+      var teste = "";
       for(var i=0;i<ranges.length;i++){
           for(var j=0;j<2;j++){
-              teste += ranges[i][j]+"\n";
+              teste += " - " + ranges[i][j];
           }
+          teste += "\n";
       }
-      $('pre.changing3').html("\nRange: "+teste);
+      $('pre.changing3').html(teste);
       //console.log(teste);
 
       var minEp, maxEp, rangeCountEp, valorEp, i, j;
@@ -151,15 +154,16 @@ function($, RangeBar) {
     minSize: 0.08,
     allowDelete: true
   }).on('changing', function(ev, ranges, changed) {
-      $('pre.changing4').html("\nRange: "+ranges);
+      $('pre.changing4').html(ranges);
   }).on('change', function(ev, ranges, changed) {
-      var teste = "\n"
+      var teste = "";
       for(var i=0;i<ranges.length;i++){
           for(var j=0;j<2;j++){
-              teste += ranges[i][j]+"\n";
+              teste += " - " + ranges[i][j];
           }
+          teste += "\n";
       }
-      $('pre.changing4').html("\nRange: "+teste);
+      $('pre.changing4').html(teste);
       //console.log(teste);
 
       var minLd, maxLd, rangeCountLd, valorLd, i, j;
@@ -202,8 +206,10 @@ require(['jquery'], function($){
           }
         }
       }
+      console.log(jobs);
+      //$("#jobsTable").DataTable();
       for(var i=0; i<jobs.length; i++){
-        $("#jobsTable").append('<tr><td>'+jobs[i]+'</td></tr>');
+        $("#jobsTable").append("<tr><td>"+jobs[i]+"</td></tr>");
       }
     }
     else{

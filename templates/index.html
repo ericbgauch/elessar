@@ -9,24 +9,36 @@
     <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='elessar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
   </head>
   <body>
     <div class="container">
       <div class="container1" role="main1">
+        <h3 class="hc">HC</h3>
         <pre class="changing1"></pre>
       </div>
+
       <div class="container2" role="main2">
+        <h3 class="ph">PH</h3>
         <pre class="changing2"></pre>
       </div>
+
       <div class="container3" role="main3">
+        <h3 class="ep">EP</h3>
         <pre class="changing3"></pre>
       </div>
+
       <div class="container4" role="main4">
+        <h3 class="ld">LD</h3>
         <pre class="changing4"></pre>
       </div>
     </div>
     <button type="button" id="botao">Generate Jobs</button>
-    <table id="jobsTable">
+    <table id="jobsTable" class="display">
+      <thead></thead>
+      <tbody></tbody>
     </table>
   </body>
 </html>
