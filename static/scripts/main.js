@@ -4,7 +4,8 @@ require.config({
     "jquery": "scripts/jquery",
     "elessar": "scripts/elessar",
     "es5-shim": "scripts/es5-shim",
-    "estira": "scripts/index"
+    "estira": "scripts/index",
+    "datatables": "scripts/datatables"
   }
 });
 require(['jquery', 'elessar'],
@@ -40,12 +41,12 @@ function($, RangeBar) {
           minHc = ranges[i][0];
           maxHc = ranges[i][1];
           valorHc = parseFloat(minHc);
-          window.hc.push(JSON.stringify(minHc));
+          window.hc.push(minHc);
           rangeCountHc = (maxHc - minHc)/0.18;
           rangeCountHc = rangeCountHc.toFixed(2);
           for(j=0;j<rangeCountHc;j++){
             valorHc += 0.18;
-            window.hc.push(JSON.stringify(valorHc.toFixed(2)));
+            window.hc.push(valorHc.toFixed(2));
           };
       };
   }).$el);
@@ -84,12 +85,12 @@ function($, RangeBar) {
           minPh = ranges[i][0];
           maxPh = ranges[i][1];
           valorPh = parseFloat(minPh);
-          window.ph.push(JSON.stringify(minPh));
+          window.ph.push(minPh);
           rangeCountPh = (maxPh - minPh)/6.18;
           rangeCountPh = rangeCountPh.toFixed(2);
           for(j=0;j<rangeCountPh;j++){
             valorPh += 6.18;
-            window.ph.push(JSON.stringify(valorPh.toFixed(2)));
+            window.ph.push(valorPh.toFixed(2));
           };
       };
   }).$el);
@@ -128,12 +129,12 @@ function($, RangeBar) {
           minEp = ranges[i][0];
           maxEp = ranges[i][1];
           valorEp = parseFloat(minEp);
-          window.ep.push(JSON.stringify(minEp));
+          window.ep.push(minEp);
           rangeCountEp = (maxEp - minEp)/0.08;
           rangeCountEp = rangeCountEp.toFixed(2);
           for(j=0;j<rangeCountEp;j++){
             valorEp += 0.08;
-            window.ep.push(JSON.stringify(valorEp.toFixed(2)));
+            window.ep.push(valorEp.toFixed(2));
           };
       };
   }).$el);
@@ -172,12 +173,12 @@ function($, RangeBar) {
           minLd = ranges[i][0];
           maxLd = ranges[i][1];
           valorLd = parseFloat(minLd);
-          window.ld.push(JSON.stringify(minLd));
+          window.ld.push(minLd);
           rangeCountLd = (maxLd - minLd)/0.08;
           rangeCountLd = rangeCountLd.toFixed(2);
           for(j=0;j<rangeCountLd;j++){
             valorLd += 0.08;
-            window.ld.push(JSON.stringify(valorLd.toFixed(2)));
+            window.ld.push(valorLd.toFixed(2));
           };
       };
   }).$el)
@@ -192,25 +193,45 @@ function isEmpty(obj) {
     return true;
 };
 
-require(['jquery'], function($){
+require(['jquery', 'datatables'], function($, datatables){
   $( "#botao" ).click(function() {
     if((typeof window.hc !== 'undefined' && !isEmpty(window.hc)) && (typeof window.ph !== 'undefined' && !isEmpty(window.ph)) && (typeof window.ep !== 'undefined' && !isEmpty(window.ep)) && (typeof window.ld !== 'undefined' && !isEmpty(window.ld))){
 
       window.jobs = [];
+      window.job = [];
       for(var i=0;i<window.hc.length;i++){
         for(var j=0;j<window.ph.length;j++){
           for(var k=0;k<window.ep.length;k++){
             for(var l=0;l<window.ld.length;l++){
-              jobs.push(window.hc[i] + window.ph[j] + window.ep[k] + window.ld[l]);
+              window.job.push(window.hc[i]);
+              window.job.push(window.ph[j]);
+              window.job.push(window.ep[k]);
+              window.job.push(window.ld[l]);
+
+              jobs.push(job);
+              window.job = [];
             }
           }
         }
       }
       console.log(jobs);
-      //$("#jobsTable").DataTable();
-      for(var i=0; i<jobs.length; i++){
-        $("#jobsTable").append("<tr><td>"+jobs[i]+"</td></tr>");
-      }
+      $("#jobsTable").DataTable( {
+        data: window.jobs,
+        columns: [
+            { title: "HC" },
+            { title: "PH" },
+            { title: "EP" },
+            { title: "LD" }
+        ],
+        scrollY: "300px",
+        scrollCollapse: true,
+        paging: false,
+        searching: false,
+        ordering: false
+      });
+      // for(var i=0; i<jobs.length; i++){
+      //   $("#jobsTable").append("<tr><td>"+jobs[i]+"</td></tr>");
+      // }
     }
     else{
       alert("Select the ranges");
