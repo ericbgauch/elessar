@@ -194,7 +194,7 @@ function isEmpty(obj) {
 };
 
 require(['jquery', 'datatables'], function($, datatables){
-  $( "#botao" ).click(function() {
+  $( "#botaoTab" ).click(function() {
     if((typeof window.hc !== 'undefined' && !isEmpty(window.hc)) && (typeof window.ph !== 'undefined' && !isEmpty(window.ph)) && (typeof window.ep !== 'undefined' && !isEmpty(window.ep)) && (typeof window.ld !== 'undefined' && !isEmpty(window.ld))){
 
       window.jobs = [];
@@ -214,27 +214,48 @@ require(['jquery', 'datatables'], function($, datatables){
           }
         }
       }
-      console.log(jobs);
-      $("#jobsTable").DataTable( {
-        data: window.jobs,
-        columns: [
+      // console.log(jobs);
+
+      if($.fn.dataTable.isDataTable('#jobsTable')){
+        table = $('#jobsTable').DataTable();
+        table.clear().rows.add(window.jobs).draw();
+        //console.log(table.data());
+      }
+      else {
+        table = $('#jobsTable').DataTable({
+          data: window.jobs,
+          columns: [
             { title: "HC" },
             { title: "PH" },
             { title: "EP" },
             { title: "LD" }
-        ],
-        scrollY: "300px",
-        scrollCollapse: true,
-        paging: false,
-        searching: false,
-        ordering: false
-      });
-      // for(var i=0; i<jobs.length; i++){
-      //   $("#jobsTable").append("<tr><td>"+jobs[i]+"</td></tr>");
-      // }
+          ],
+          scrollY: "300px",
+          scrollCollapse: true,
+          paging: false,
+          searching: false,
+          ordering: false
+        });
+      }
     }
     else{
       alert("Select the ranges");
     };
   });
 });
+
+require(['jquery', 'datatables'], function($, datatables){
+  $("#botaoSub").click(function(){
+    if($.fn.dataTable.isDataTable('#jobsTable')){
+      table = $('#jobsTable').DataTable();
+      window.jobsToRun = [];
+      for(var i=0; i<table.column(0).data().length; i++){
+        window.jobsToRun.push(table.row(i).data());
+      }
+      $("#runjobs").html(window.jobsToRun);
+    }
+    else{
+      alert("Select the ranges");
+    }
+  })
+})
